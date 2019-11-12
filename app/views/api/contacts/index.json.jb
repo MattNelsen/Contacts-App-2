@@ -1,0 +1,7 @@
+{
+  id: @contacts.id,
+  first_name: @contacts.first_name,
+  last_name: @contacts.last_name,
+  email: @contacts.email,
+  phone_number: @contacts.phone_number,
+}
