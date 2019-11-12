@@ -10,7 +10,7 @@ class Api::ContactsController < ApplicationController
   end
 
   def index
-    @contacts = Contact.all
+    @contact = Contact.all
     render "index.json.jb"
   end
 
@@ -38,5 +38,11 @@ class Api::ContactsController < ApplicationController
     @contact.phone_number = params["phone_number"] || @contact.phone_number
     @contact.save
     render "show.json.jb"
+  end
+
+  def destroy
+    @contact = Contact.find_by(id: params["id"])
+    @contact.destroy
+    render json: { message: "Your contact has been deleted!" }
   end
 end

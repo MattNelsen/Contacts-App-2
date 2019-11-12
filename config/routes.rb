@@ -13,6 +13,6 @@ Rails.application.routes.draw do
     post "/contact" => "contacts#create"
     get "/contacts/:id" => "contacts#show"
     patch "/contacts/:id" => "contacts#update"
-    destroy
+    delete "/contact/:id" => "contacts#destroy"
   end
 end
