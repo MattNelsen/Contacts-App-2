@@ -11,6 +11,12 @@ class Api::ContactsController < ApplicationController
 
   def index
     @contact = Contact.all
+    if params[:search]
+      @contacts = contact.where("name ILIKE ?", "%#{params[:search]}%")
+    end
+
+    @contacts = @contacts.order(:id => :asc)
+
     render "index.json.jb"
   end
 
@@ -24,7 +30,7 @@ class Api::ContactsController < ApplicationController
     if @contact.save
       render "show.json.jb"
     else
-      render json: { errors: @contact.errors.full_messages }
+      render json: { errors: @contact.errors.full_messages }, status: 422
     end
   end
 
@@ -42,7 +48,7 @@ class Api::ContactsController < ApplicationController
     if @contact.save
       render "show.json.jb"
     else
-      render json: { errors: @contact.errors.full_messages }
+      render json: { errors: @contact.errors.full_messages }, status: 422
     end
   end
 
